@@ -368,4 +368,5 @@ MigrationBackup/
 .ionide/
 
 # text folder
-./text
+./texts/
+./texts/*.*
