@@ -9,11 +9,9 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // <solution>
-        // Since in this case we know the length of the array ahead of time, we can create a fixed size array of that size
-        // returning it at the end.
-        // So the first step is to create the array by the size
-        // Then populate the array with a for loop using with index starting at 1 and increasing counter that we can use as the multiplier as well until it reaches the length
-        // inside the for loop, each value in the array is set to the number multiplied by (index + 1) since the index starts at 1
+        // Create an array of the specified length to store the multiples
+        // Use a loop to calculate each multiple: number * (1, 2, 3, ..., length)
+        // Each array element at index i contains number * (i + 1), with i starting from 0
         
         var multiples = new double[length];
 
