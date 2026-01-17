@@ -227,6 +227,7 @@ public class PriorityQueueTests
     // This will test the priority queue's handling of extreme priority values.
     // Expected Result: Items are dequeued in order of their priorities, from highest to lowest.
     // Defect(s) Found: 
+    // None, after fix in previous test.
     public void TestPriorityQueue_EdgeValues()
     {
         var tim = new PriorityItem("Tim", int.MaxValue);
@@ -259,10 +260,38 @@ public class PriorityQueueTests
     // This will test correct ordering and handling of items with identical priorities, validating FIFO order.
     // Expected Result: Items are dequeued in order of their priorities, from highest to lowest, with items of the same priority dequeued in the order they were added.
     // Defect(s) Found: 
+    // The dequeue method did not correctly handle items with the same priority in FIFO order. Changed the comparison in the for loop from "if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)" to "if (_queue[index].Priority > _queue[highPriorityIndex].Priority)" to fix.
     public void TestPriorityQueue_SomeSamePriorities()
     {
+        var tim = new PriorityItem("Tim", 1);
+        var sue = new PriorityItem("Sue", 1);
+        var bob = new PriorityItem("Bob", -1);
+        var ann = new PriorityItem("Ann", 0);
+        var max = new PriorityItem("Max", 3);
+        var liz = new PriorityItem("Liz", 0);
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+        priorityQueue.Enqueue(tim.Value, tim.Priority);
+        priorityQueue.Enqueue(sue.Value, sue.Priority);
+        priorityQueue.Enqueue(ann.Value, ann.Priority);
+        priorityQueue.Enqueue(max.Value, max.Priority);
+        priorityQueue.Enqueue(liz.Value, liz.Priority);
+
+        PriorityItem[] expectedResult = [max, tim, sue, ann, liz, bob];
+
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }
 
     [TestMethod]
@@ -270,6 +299,7 @@ public class PriorityQueueTests
     // This will test correct FIFO ordering when priorities are identical.
     // Expected Result: Items are dequeued in the order they were added, since all priorities are the same.
     // Defect(s) Found: 
+    // 
     public void TestPriorityQueue_AllSamePriorities()
     {
         var priorityQueue = new PriorityQueue();
