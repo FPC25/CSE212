@@ -6,24 +6,112 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
+    // Scenario: Attempt to dequeue from an empty priority queue
+    // This will test error handling.
+    // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
-    public void TestPriorityQueue_1()
+    public void TestPriorityQueue_EmptyQueue()
     {
         var priorityQueue = new PriorityQueue();
         Assert.Fail("Implement the test case and then remove this.");
     }
 
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
+    // Scenario: Add a single item to the priority queue and then dequeue it, emptying the queue.
+    // This will test adding and removing items functionality.
+    // Expected Result: The first dequeue returns the item.
     // Defect(s) Found: 
-    public void TestPriorityQueue_2()
+    public void TestPriorityQueue_OneItem()
     {
         var priorityQueue = new PriorityQueue();
         Assert.Fail("Implement the test case and then remove this.");
     }
 
-    // Add more test cases as needed below.
+    [TestMethod]
+    // Scenario: Add a single item to the priority queue and then dequeue it, then try to dequeue again.
+    // This will test error handling after removing all items from the queue.
+    // Expected Result: The first dequeue returns the item, the second dequeue throws an exception.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_DequeueUntilEmpty()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items with different positive priorities to the priority queue, then dequeue them.
+    // This will test correct ordering based on priority.
+    // Expected Result: Items are dequeued in order of their priorities, from highest to lowest.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_MultipleDIfferentPositivePriorities()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items with different negative priorities to the priority queue, then dequeue them.
+    // This will test correct ordering based on priority, with the twist of negative values.
+    // Expected Result: Items are dequeued in order of their priorities, from least negative to most negative.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_MultipleDIfferentNegativePriorities()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items with mixed positive and negative priorities to the priority queue, including zero, then dequeue them.
+    // This will test correct ordering based on priority across the full range of integer values.
+    // Expected Result: Items are dequeued in order of their priorities, from highest to lowest.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_MultipleDIfferentMixedPriorities()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add items with edge case priority values (int.MaxValue, int.MinValue) to the priority queue, then dequeue them.
+    // This will test the priority queue's handling of extreme priority values.
+    // Expected Result: Items are dequeued in order of their priorities, from highest to lowest.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_EdgeValues()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items with some having the same priorities to the priority queue, then dequeue them.
+    // This will test correct ordering and handling of items with identical priorities, validating FIFO order.
+    // Expected Result: Items are dequeued in order of their priorities, from highest to lowest, with items of the same priority dequeued in the order they were added.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_SomeSamePriorities()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items all having the same priority to the priority queue, then dequeue them.
+    // This will test correct FIFO ordering when priorities are identical.
+    // Expected Result: Items are dequeued in the order they were added, since all priorities are the same.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_AllSamePriorities()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }
+
+    [TestMethod]
+    // Scenario: Add multiple items midway through processing to the priority queue.
+    // This will test the priority queue's ability to handle dynamic additions.
+    // Expected Result: The newly added items are correctly placed according to their priorities.
+    // Defect(s) Found: 
+    public void TestPriorityQueue_AddingPlayersMidway()
+    {
+        var priorityQueue = new PriorityQueue();
+        Assert.Fail("Implement the test case and then remove this.");
+    }    
 }
