@@ -337,7 +337,7 @@ public class PriorityQueueTests
     {
         var tim = new PriorityItem("Tim", 5);
         var sue = new PriorityItem("Sue", 1);
-        var bob = new PriorityItem("Bob", 0);
+        var bob = new PriorityItem("Bob", -1);
         var ann = new PriorityItem("Ann", 1);
         var max = new PriorityItem("Max", 3);
         var liz = new PriorityItem("Liz", 0);
