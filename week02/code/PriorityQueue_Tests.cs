@@ -155,6 +155,7 @@ public class PriorityQueueTests
     // This will test correct ordering based on priority, with the twist of negative values.
     // Expected Result: Items are dequeued in order of their priorities, from least negative to most negative.
     // Defect(s) Found: 
+    // None, after fix in previous test.
     public void TestPriorityQueue_MultipleDIfferentNegativePriorities()
     {
         var tim = new PriorityItem("Tim", -2);
@@ -187,10 +188,38 @@ public class PriorityQueueTests
     // This will test correct ordering based on priority across the full range of integer values.
     // Expected Result: Items are dequeued in order of their priorities, from highest to lowest.
     // Defect(s) Found: 
+    // None, after fix in previous test.
     public void TestPriorityQueue_MultipleDIfferentMixedPriorities()
     {
+        var tim = new PriorityItem("Tim", -2);
+        var sue = new PriorityItem("Sue", -5);
+        var bob = new PriorityItem("Bob", -1);
+        var ann = new PriorityItem("Ann", 0);
+        var max = new PriorityItem("Max", 3);
+        var liz = new PriorityItem("Liz", 1);
+
+        PriorityItem[] expectedResult = [max, liz, ann, bob, tim, sue];
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+        priorityQueue.Enqueue(tim.Value, tim.Priority);
+        priorityQueue.Enqueue(sue.Value, sue.Priority);
+        priorityQueue.Enqueue(ann.Value, ann.Priority);
+        priorityQueue.Enqueue(max.Value, max.Priority);
+        priorityQueue.Enqueue(liz.Value, liz.Priority);
+
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }
 
     [TestMethod]
@@ -200,8 +229,29 @@ public class PriorityQueueTests
     // Defect(s) Found: 
     public void TestPriorityQueue_EdgeValues()
     {
+        var tim = new PriorityItem("Tim", int.MaxValue);
+        var sue = new PriorityItem("Sue", 0);
+        var bob = new PriorityItem("Bob", int.MinValue);
+
+        PriorityItem[] expectedResult = [tim, sue, bob];
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+        priorityQueue.Enqueue(tim.Value, tim.Priority);
+        priorityQueue.Enqueue(sue.Value, sue.Priority);
+
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }
 
     [TestMethod]
