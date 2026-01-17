@@ -45,6 +45,11 @@ public class TakingTurnsQueue
                 person.Turns -= 1;
                 _people.Enqueue(person);
             }
+            else if (person.Turns < 1) // add tp handle infinite turns
+            {
+                // Infinite turns, do not decrement
+                _people.Enqueue(person);
+            }
 
             return person;
         }
