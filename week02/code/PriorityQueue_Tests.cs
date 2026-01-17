@@ -13,7 +13,28 @@ public class PriorityQueueTests
     public void TestPriorityQueue_EmptyQueue()
     {
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+
+        try
+        {
+            priorityQueue.Dequeue();
+            Assert.Fail("Expected an InvalidOperationException to be thrown.");
+        }
+        catch (InvalidOperationException ex)
+        {
+            Assert.AreEqual("The queue is empty.", ex.Message);
+            return; // Test passes if exception is caught with correct message
+        }
+        catch (AssertFailedException)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            Assert.Fail(
+                 string.Format("Unexpected exception of type {0} caught: {1}",
+                                e.GetType(), e.Message)
+            );
+        }
     }
 
     [TestMethod]
