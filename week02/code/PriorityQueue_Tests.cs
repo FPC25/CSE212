@@ -42,10 +42,28 @@ public class PriorityQueueTests
     // This will test adding and removing items functionality.
     // Expected Result: The first dequeue returns the item.
     // Defect(s) Found: 
+    // * The dequeue method did not remove the item from the queue before returning it. So added _queue.RemoveAt(highPriorityIndex) to fix.
     public void TestPriorityQueue_OneItem()
     {
+        var bob = new PriorityItem("Bob", 1);
+
+        PriorityItem[] expectedResult = [bob];
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }
 
     [TestMethod]
@@ -53,10 +71,49 @@ public class PriorityQueueTests
     // This will test error handling after removing all items from the queue.
     // Expected Result: The first dequeue returns the item, the second dequeue throws an exception.
     // Defect(s) Found: 
-    public void TestPriorityQueue_DequeueUntilEmpty()
+    public void TestPriorityQueue_DequeueAfterEmpty()
     {
+         var bob = new PriorityItem("Bob", 1);
+
+        PriorityItem[] expectedResult = [bob];
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
+
+        try
+        {
+            priorityQueue.Dequeue();
+            Assert.Fail("Expected an InvalidOperationException to be thrown.");
+        }
+        catch (InvalidOperationException ex)
+        {
+            Assert.AreEqual("The queue is empty.", ex.Message);
+            return; // Test passes if exception is caught with correct message
+        }
+        catch (AssertFailedException)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            Assert.Fail(
+                 string.Format("Unexpected exception of type {0} caught: {1}",
+                                e.GetType(), e.Message)
+            );
+        } 
     }
 
     [TestMethod]
