@@ -329,8 +329,8 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: Add multiple items midway through processing to the priority queue.
-    // This will test the priority queue's ability to handle dynamic additions.
-    // Expected Result: The newly added items are correctly placed according to their priorities.
+    // This will test the priority queue's ability to handle dynamic additions, in addition to testing mixed priorities, including zero, negative, and positive values and FIFO order.
+    // Expected Result: The newly added items are correctly placed according to their priorities and order of insertion.
     // Defect(s) Found: 
     // None, after fix in previous test.
     public void TestPriorityQueue_AddingPlayersMidway()
