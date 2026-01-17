@@ -10,6 +10,7 @@ public class PriorityQueueTests
     // This will test error handling.
     // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
+    // None
     public void TestPriorityQueue_EmptyQueue()
     {
         var priorityQueue = new PriorityQueue();
@@ -42,7 +43,7 @@ public class PriorityQueueTests
     // This will test adding and removing items functionality.
     // Expected Result: The first dequeue returns the item.
     // Defect(s) Found: 
-    // * The dequeue method did not remove the item from the queue before returning it. So added _queue.RemoveAt(highPriorityIndex) to fix.
+    // The dequeue method did not remove the item from the queue before returning it. So added _queue.RemoveAt(highPriorityIndex) to fix.
     public void TestPriorityQueue_OneItem()
     {
         var bob = new PriorityItem("Bob", 1);
@@ -299,11 +300,31 @@ public class PriorityQueueTests
     // This will test correct FIFO ordering when priorities are identical.
     // Expected Result: Items are dequeued in the order they were added, since all priorities are the same.
     // Defect(s) Found: 
-    // 
+    // None, after fix in previous test.
     public void TestPriorityQueue_AllSamePriorities()
     {
+        var tim = new PriorityItem("Tim", 0);
+        var sue = new PriorityItem("Sue", 0);
+        var bob = new PriorityItem("Bob", 0);
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+        priorityQueue.Enqueue(tim.Value, tim.Priority);
+        priorityQueue.Enqueue(sue.Value, sue.Priority);
+
+        PriorityItem[] expectedResult = [bob, tim, sue];
+        int i = 0;
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }
 
     [TestMethod]
@@ -311,9 +332,44 @@ public class PriorityQueueTests
     // This will test the priority queue's ability to handle dynamic additions.
     // Expected Result: The newly added items are correctly placed according to their priorities.
     // Defect(s) Found: 
+    // None, after fix in previous test.
     public void TestPriorityQueue_AddingPlayersMidway()
     {
+        var tim = new PriorityItem("Tim", 5);
+        var sue = new PriorityItem("Sue", 1);
+        var bob = new PriorityItem("Bob", 0);
+        var ann = new PriorityItem("Ann", 1);
+        var max = new PriorityItem("Max", 3);
+        var liz = new PriorityItem("Liz", 0);
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue(sue.Value, sue.Priority);
+        priorityQueue.Enqueue(tim.Value, tim.Priority);
+        priorityQueue.Enqueue(ann.Value, ann.Priority);
+        priorityQueue.Enqueue(liz.Value, liz.Priority);
+
+        PriorityItem[] expectedResult = [tim, sue, max, ann, liz, bob];
+
+        int i;
+        for (i = 0; i < 2; i++)
+        {
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+        }
+
+        priorityQueue.Enqueue(max.Value, max.Priority);
+        priorityQueue.Enqueue(bob.Value, bob.Priority);
+
+        while (priorityQueue.Length > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have ran out of items by now.");
+            }
+
+            var person = priorityQueue.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, person);
+            i++;
+        }
     }    
 }
