@@ -98,6 +98,7 @@ public static class SetsAndMaps
             return false;
         }
 
+        // auxiliary function to create letter dictionary
         Dictionary<char, int> CreateLetterDictionary(string word)
         {
             var letterDict = new Dictionary<char, int>();
@@ -115,11 +116,13 @@ public static class SetsAndMaps
              return letterDict;
         }
 
+        // if the dictionaries have no differences, then they are anagrams
         if (!CreateLetterDictionary(word1).Except(CreateLetterDictionary(word2)).Any())
         {
             return true;
         }
 
+        // otherwise, they are not anagrams
         return false;
     }
 
