@@ -22,9 +22,12 @@
         Console.WriteLine($"Number of duplicates : {CountDuplicates(data)}");
     }
 
+    // A pergunta é somente em relação a quantos são os duplicados e quantas vezes cada duplicado aparece, logo se 
+    // popularmos um set com a informação em data ele já ignora os duplicados e os duplicados são dados pela 
+    // diferença entre o comprimento de data - comprimento do set gerado de data 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        return 0;
+        HashSet<int> seen = new HashSet<int>(data);
+        return data.Count() - seen.Count();
     }
 }
