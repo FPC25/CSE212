@@ -22,9 +22,15 @@
         Console.WriteLine($"Number of duplicates : {CountDuplicates(data)}");
     }
 
-    // A pergunta é somente em relação a quantos são os duplicados e quantas vezes cada duplicado aparece, logo se 
-    // popularmos um set com a informação em data ele já ignora os duplicados e os duplicados são dados pela 
-    // diferença entre o comprimento de data - comprimento do set gerado de data 
+    // A pergunta é somente em relação a quantos são os duplicados e não quantas vezes cada duplicado aparece, 
+    // logo se popularmos um set com a informação em data ele já ignora os duplicados e a quantidade de duplicados é 
+    // dado pela diferença entre o comprimento de data - comprimento do set gerado de data 
+
+    // The question is only about how many duplicates there are and not how many times each duplicate appears, so if 
+    // we populate a set with the information in data, it already ignores the duplicates, and the amount of  
+    // duplicates are given by the difference between the length of data and the length of the set generated from 
+    // data
+
     private static int CountDuplicates(int[] data)
     {
         HashSet<int> seen = new HashSet<int>(data);
