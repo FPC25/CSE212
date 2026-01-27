@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -149,10 +150,9 @@ public class LinkedList : IEnumerable<int>
                 {
                     RemoveHead();
                 }
-
                 // If the location of 'value' is at the end of the list,
                 // then we can call RemoveTail to remove 'value'
-                if (curr == _tail)
+                else if (curr == _tail)
                 {
                     RemoveTail();
                 }
@@ -165,6 +165,7 @@ public class LinkedList : IEnumerable<int>
                 }
                 return; // We can exit the function after we remove
             }
+            curr = curr.Next; // Go to the next node to search for 'value'
         }
         return; // We can exit the function if we did not find 'value'
     }
