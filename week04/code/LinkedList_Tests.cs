@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // DO NOT MODIFY THIS FILE
@@ -86,7 +87,7 @@ public class RemoveTailTests
 public class RemoveTests
 {
     [TestMethod]
-    public void Remove_NonExistant()
+    public void Remove_NonExistent()
     {
         var ll = new LinkedList();
 
@@ -99,7 +100,6 @@ public class RemoveTests
 
         ll.InsertAfter(3, 35);
         ll.InsertAfter(5, 6);
-
         Assert.AreEqual("<LinkedList>{5, 6, 4, 3, 35, 2, 2, 2}", ll.ToString());
         ll.Remove(-1);
         Assert.AreEqual("<LinkedList>{5, 6, 4, 3, 35, 2, 2, 2}", ll.ToString());
@@ -157,7 +157,7 @@ public class RemoveTests
 public class ReplaceTests
 {
     [TestMethod]
-    public void Replace_NonExistant()
+    public void Replace_NonExistent()
     {
         var ll = new LinkedList();
 
