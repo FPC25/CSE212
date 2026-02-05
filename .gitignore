@@ -370,3 +370,4 @@ MigrationBackup/
 # text folder
 texts/
 *.mp4
+*.pdf
