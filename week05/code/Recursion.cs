@@ -63,14 +63,14 @@ public static class Recursion
     /// #############
     /// # Problem 3 #
     /// #############
-    /// Imagine that there was a staircase with 's' stairs.  
+    /// Imagine that there was a staircase with 's' steps.  
     /// We want to count how many ways there are to climb 
     /// the stairs.  If the person could only climb one 
-    /// stair at a time, then the total would be just one.  
+    /// step at a time, then the total would be just one.  
     /// However, if the person could choose to climb either 
-    /// one, two, or three stairs at a time (in any order), 
+    /// one, two, or three steps at a time (in any order), 
     /// then the total possibilities become much more 
-    /// complicated.  If there were just three stairs,
+    /// complicated.  If there were just three steps,
     /// the possible ways to climb would be four as follows:
     ///
     ///     1 step, 1 step, 1 step
@@ -79,7 +79,7 @@ public static class Recursion
     ///     3 step
     ///
     /// With just one step to go, the ways to get
-    /// to the top of 's' stairs is to either:
+    /// to the top of 's' steps is to either:
     ///
     /// - take a single step from the second to last step, 
     /// - take a double step from the third to last step, 
