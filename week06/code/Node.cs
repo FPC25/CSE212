@@ -72,6 +72,7 @@ public class Node
         {
             right_height = Right.GetHeight();
         }
+        
         return Math.Max(left_height, right_height) + 1; 
     }
 }
